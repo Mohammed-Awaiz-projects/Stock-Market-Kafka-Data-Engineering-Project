@@ -1,34 +1,87 @@
-**Stock Market Data Pipeline using Kafka and AWS**
+# Stock Market Data Pipeline using Kafka and AWS
 
-**Project Overview**
-This project demonstrates an End-to-End Data Engineering pipeline for real-time stock market data. The pipeline uses various technologies such as Python, Apache Kafka, Amazon Web Services (AWS), Glue, Athena, and SQL to ingest, process, store, and analyze real-time stock market data.
+## *Project Overview*
 
-The pipeline collects real-time stock data from multiple sources, processes it using Kafka, and stores it in AWS services (S3, Athena, Glue). The goal is to build a robust data pipeline that allows for quick ingestion and processing of stock market data for future analysis.
+This project demonstrates an **End-to-End Data Engineering pipeline** that processes **real-time stock market data** using **Kafka** and **AWS services**. The pipeline is designed to ingest, process, store, and analyze stock market data in real-time, with a focus on building a scalable and efficient data pipeline for financial data processing.
 
-**Technologies Used**
-Programming Language: Python
-Amazon Web Services (AWS): For cloud-based storage and services.
-S3 (Simple Storage Service): To store real-time stock market data in raw format.
-Athena: To run SQL queries on the stored stock market data for quick analysis.
-Glue Crawler & Glue Catalog: For automatic data cataloging and schema discovery.
-EC2: For running the application server.
-Apache Kafka: A distributed streaming platform for real-time data ingestion and processing.
+**Key Technologies:**
+- **Python** for data ingestion and processing
+- **Apache Kafka** for real-time data streaming
+- **Amazon Web Services (AWS)** for cloud storage and services (*S3*, *Glue*, *Athena*, *EC2*)
+- **SQL** for querying and analyzing stock data in Athena
 
-**Dataset Used**
-The dataset for this project is real-time stock market data. The data can be collected from various public APIs or external datasets, depending on the data source. The focus of this project is on building a data pipeline that handles the ingestion, processing, and storage of the stock data.
+## *Technologies Used*
 
-**Architecture Overview**
-The architecture of the data pipeline is as follows:
+- **Python**: The core language for data processing and Kafka interactions.
+- **Apache Kafka**: A distributed streaming platform for real-time data ingestion and processing.
+- **AWS Services**:
+  - **S3** (*Simple Storage Service*) to store raw stock market data.
+  - **Athena** for running SQL queries over the data in S3.
+  - **Glue Crawler & Glue Catalog** for automatic schema discovery and data cataloging.
+  - **EC2** to run the Kafka producer/consumer scripts.
+- **SQL** for querying processed data using AWS Athena.
 
-**Stock Data Collection:**
-Real-time stock market data is fetched from an external API.
-The data is processed and formatted using Python.
-**Data Ingestion with Kafka:**
-The real-time data is ingested into Apache Kafka, which serves as a message broker for streaming data.
-The Kafka producer sends stock data messages to Kafka topics.
-**Data Storage with AWS S3:**
-The Kafka consumer consumes the data from Kafka topics and stores it in S3 in a structured format (e.g., JSON, CSV).
-**Data Cataloging with AWS Glue:**
-Glue Crawler is used to automatically crawl the data stored in S3 and create a Glue Catalog that contains metadata about the stock market data.
-**Data Analysis with AWS Athena:**
-AWS Athena is used to query the stored stock market data using SQL for real-time analysis and insights.
+## *Architecture*
+
+1. **Stock Data Collection**:
+   - Fetches **real-time stock market data** from external APIs.
+   - Data is processed using Python to structure it before ingestion.
+
+2. **Data Ingestion with Kafka**:
+   - Stock data is streamed in real-time via **Kafka**, where the producer sends data to Kafka topics.
+   - A Kafka consumer processes the messages and stores them in **AWS S3**.
+
+3. **Data Storage with AWS S3**:
+   - The raw stock market data is stored in **S3**, in **JSON/CSV formats**, for further analysis.
+
+4. **Data Cataloging with AWS Glue**:
+   - **AWS Glue Crawlers** automatically detect the data structure in S3 and catalog the metadata in **Glue Data Catalog**.
+
+5. **Data Analysis with AWS Athena**:
+   - Use **Athena** to run SQL queries directly on the raw stock market data stored in S3, enabling quick analytics.
+
+## *Setup Instructions*
+
+### *Prerequisites*
+
+- **AWS account** and **AWS CLI** configured.
+- **Python 3.6 or later**.
+- **Kafka** installed on your local machine or Kafka cluster access.
+- Required Python packages installed (*e.g.,* `boto3`, `kafka-python`, `pandas`, `requests`, etc.).
+
+### *Step 1: Setting Up AWS Services*
+
+1. **Create S3 Bucket**:
+   - Log in to **AWS** and create an **S3 bucket** for storing stock data.
+
+2. **Set up AWS Glue**:
+   - Create a **Glue Crawler** to automatically discover and catalog data in the S3 bucket.
+   - Set up **Glue Data Catalog** to manage metadata.
+
+3. **Set up AWS Athena**:
+   - Set up **Athena** to run queries on data stored in **S3** using the Glue Catalog.
+
+4. **Set up EC2**:
+   - Launch an **EC2 instance** to run the Python scripts for Kafka producer/consumer.
+
+### *Step 2: Setting Up Kafka*
+
+1. Install and configure **Kafka** on your local machine or use a managed Kafka service.
+2. Create topics for **real-time data ingestion**.
+3. Set up a **Kafka producer** in Python to send stock data to Kafka topics.
+4. Set up a **Kafka consumer** in Python to read from Kafka topics and store the data in **AWS S3**.
+
+### *Step 3: Running the Pipeline*
+
+1. Start the **Kafka producer** to begin streaming real-time stock data.
+   ```bash
+   python kafka_producer.py
+   
+2. Start the **Kafka consumer** to consume data from Kafka and store it in S3.
+   ```bash
+   python kafka_consumer.py
+3. AWS Glue will automatically crawl the data in S3 and update the Glue Catalog with metadata.
+4. Use AWS Athena to run SQL queries on the stock market data stored in S3.
+
+### *Conclusion*
+This project demonstrates how to design and implement a real-time data pipeline for stock market data using Kafka, AWS, and Python. It provides the foundation for creating scalable data pipelines in the financial domain, where data ingestion, processing, and querying are crucial.
