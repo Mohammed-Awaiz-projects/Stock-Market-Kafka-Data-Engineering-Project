@@ -1,5 +1,7 @@
 # Stock Market Data Pipeline using Kafka and AWS
 
+![Image Alt Text](Architecture.jpg)
+
 ## *Project Overview*
 
 This project demonstrates an **End-to-End Data Engineering pipeline** that processes **real-time stock market data** using **Kafka** and **AWS services**. The pipeline is designed to ingest, process, store, and analyze stock market data in real-time, with a focus on building a scalable and efficient data pipeline for financial data processing.
