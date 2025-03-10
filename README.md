@@ -1,4 +1,4 @@
-**Real-Time Stock Market Data Pipeline using Kafka and AWS**
+**Stock Market Data Pipeline using Kafka and AWS**
 
 **Project Overview**
 This project demonstrates an End-to-End Data Engineering pipeline for real-time stock market data. The pipeline uses various technologies such as Python, Apache Kafka, Amazon Web Services (AWS), Glue, Athena, and SQL to ingest, process, store, and analyze real-time stock market data.
